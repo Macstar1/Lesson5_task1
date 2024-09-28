@@ -20,6 +20,7 @@ object WallService {
         return find
 
     }
+    /*
 
     fun likeById(id: Long) {
         for ((index, post) in posts.withIndex()) {
@@ -29,5 +30,7 @@ object WallService {
         }
     }
 
+
+     */
 
 }
