@@ -1,4 +1,5 @@
 data class Post(
+    val original: Post?,
     var id: Long = 1L,
     val ownerId: Int = 1,
     val fromId: Int = 1,
