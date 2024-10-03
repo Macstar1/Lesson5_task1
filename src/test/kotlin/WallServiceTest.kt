@@ -9,6 +9,7 @@ class WallServiceTest {
     @Test
     fun add_increase_id() {
         val post = Post(
+            original = null,
             id = 0L,
             ownerId = 1,
             fromId = 1,
@@ -32,6 +33,7 @@ class WallServiceTest {
     fun update_false() {
 
         val post = Post(
+            original = null,
             id = 100L,
             ownerId = 1,
             fromId = 1,
@@ -56,6 +58,7 @@ class WallServiceTest {
     fun update_true() {
 
         val post = Post(
+            original = null,
             id = 1L,
             ownerId = 1,
             fromId = 1,
