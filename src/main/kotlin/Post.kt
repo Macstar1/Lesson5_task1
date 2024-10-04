@@ -24,5 +24,5 @@ data class Post(
     val isCanPin: Boolean = true,
     val isCanDelete: Boolean = true,
     val isCanEdit: Boolean = true,
-    var attachment: Attachment? = null
+    var attachment: Array<Attachment>? = null
 )
