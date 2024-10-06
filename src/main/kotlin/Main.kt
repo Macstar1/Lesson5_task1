@@ -3,7 +3,9 @@ fun main() {
     val comment: Comments = Comments()
     val like: Likes = Likes()
     val post: Post = Post()
-    val posts: WallService
+    val posts: WallService = WallService
+
+    posts.add(post)
 
 
 
@@ -24,6 +26,6 @@ fun main() {
 
 
 
-    println(post)
+    println(posts)
 
 }

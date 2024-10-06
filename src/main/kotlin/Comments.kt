@@ -1,8 +1,8 @@
-class Comments(
-    id: Int = 0,
-    fromId: Int = 0,
-    date: Int = 0,
-    text: String = "",
-    attachments: Attachment? = null,
+data class Comments(
+    val id: Int = 0,
+    val fromId: Int = 0,
+    val date: Int = 0,
+    val text: String = "",
+    val attachments: Attachment? = null,
 ) {
 }
