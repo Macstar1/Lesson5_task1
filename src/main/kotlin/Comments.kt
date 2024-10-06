@@ -1,8 +1,8 @@
 class Comments(
-    count: Int = 0,
-    canPost: Boolean = true,
-    canClose: Boolean = true,
-    canOpen: Boolean = true,
-    text: String = ""
+    id: Int = 0,
+    fromId: Int = 0,
+    date: Int = 0,
+    text: String = "",
+    attachments: Attachment? = null,
 ) {
 }

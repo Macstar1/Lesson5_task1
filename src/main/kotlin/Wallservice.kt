@@ -1,6 +1,11 @@
 object WallService {
     private var uniqueId = 0L
     private var posts = emptyArray<Post>()
+    private var comments = emptyArray<Comments>()
+
+    fun createComment(postId: Int, comment: Comments): Comments {
+        TODO() // add function
+    }
 
     fun add(post: Post): Post {
         uniqueId += 1

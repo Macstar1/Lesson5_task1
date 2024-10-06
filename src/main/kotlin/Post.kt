@@ -6,19 +6,8 @@ data class Post(
     val date: Int = 1,
     val text: String = "",
     val isFriendsOnly: Boolean = true,
-    val comments: Comments = Comments(
-        0,
-        true,
-        true,
-        true,
-        ""
-    ),
-    val likes: Likes = Likes(
-        0,
-        true,
-        true,
-        true
-    ),
+    val comments: Comments = Comments(),
+    val likes: Likes = Likes(),
     val views: Views = Views(0),
     val postType: String = "",
     val isCanPin: Boolean = true,

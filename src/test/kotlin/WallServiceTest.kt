@@ -6,6 +6,7 @@ import org.junit.Assert.*
 
 class WallServiceTest {
     private var posts = emptyArray<Post>()
+
     @Test
     fun add_increase_id() {
         val post = Post(
@@ -16,7 +17,7 @@ class WallServiceTest {
             date = 1,
             text = "",
             isFriendsOnly = true,
-            comments = Comments(0, true, true, true),
+            comments = Comments(),
             likes = Likes(0, true, true, true),
             views = Views(0),
             postType = "",
@@ -40,7 +41,7 @@ class WallServiceTest {
             date = 1,
             text = "",
             isFriendsOnly = true,
-            comments = Comments(0, true, true, true),
+            comments = Comments(),
             likes = Likes(0, true, true, true),
             views = Views(0),
             postType = "",
@@ -65,7 +66,7 @@ class WallServiceTest {
             date = 1,
             text = "",
             isFriendsOnly = true,
-            comments = Comments(0, true, true, true),
+            comments = Comments(),
             likes = Likes(0, true, true, true),
             views = Views(0),
             postType = "",
