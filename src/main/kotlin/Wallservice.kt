@@ -3,6 +3,10 @@ object WallService {
     private var posts = emptyArray<Post>()
     private var comments = emptyArray<Comments>()
 
+    fun getPosts(): Array<Post> {
+        return posts
+    }
+    
     fun createComment(postId: Int, comment: Comments): Comments {
         TODO() // add function
     }

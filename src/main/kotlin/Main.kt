@@ -26,6 +26,6 @@ fun main() {
 
 
 
-    println(posts)
+    println(posts.getPosts())
 
 }
