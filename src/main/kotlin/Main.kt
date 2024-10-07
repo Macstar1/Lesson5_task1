@@ -26,6 +26,7 @@ fun main() {
 
     println(wall.getPostSize())
 
+    println(wall.createComment(5, comment))
 
     println(wall.getPost(0))
 

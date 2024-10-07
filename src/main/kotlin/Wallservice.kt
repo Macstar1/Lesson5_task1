@@ -1,20 +1,15 @@
 object WallService {
-    private var uniqueId = 0L
+    private var uniquePostId = 0L
+    private var uniqueCommentId = 0L
     private var posts = emptyArray<Post>()
     private var comments = emptyArray<Comments>()
-
-    fun getPost(index: Int): Post {
-        return posts[index]
-    }
-
-    fun getPostSize(): Int {
-        return posts.size
-    }
 
     fun createComment(postId: Int, comment: Comments): Comments? {
         for ((index, post) in posts.withIndex()) {
             if (post.id == posts[index].id) {
+                uniqueCommentId += 1
                 posts[index].comments += comment
+                posts[index].comments.last().id = uniqueCommentId
                 return comment
             }
         }
@@ -24,9 +19,9 @@ object WallService {
     }
 
     fun add(post: Post): Post {
-        uniqueId += 1
+        uniquePostId += 1
         posts += post
-        posts.last().id = uniqueId
+        posts.last().id = uniquePostId
         return posts.last()
     }
 
@@ -41,6 +36,15 @@ object WallService {
         return find
 
     }
+
+    fun getPost(index: Int): Post {
+        return posts[index]
+    }
+
+    fun getPostSize(): Int {
+        return posts.size
+    }
+
     /*
 
     fun likeById(id: Long) {
