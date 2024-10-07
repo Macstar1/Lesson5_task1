@@ -6,7 +6,7 @@ data class Post(
     val date: Int = 1,
     val text: String = "",
     val isFriendsOnly: Boolean = true,
-    val comments: Comments = Comments(),
+    var comments: Array<Comments> = emptyArray<Comments>(),
     val likes: Likes = Likes(),
     val views: Views = Views(0),
     val postType: String = "",

@@ -3,12 +3,24 @@ object WallService {
     private var posts = emptyArray<Post>()
     private var comments = emptyArray<Comments>()
 
-    fun getPosts(): Array<Post> {
-        return posts
+    fun getPost(index: Int): Post {
+        return posts[index]
     }
-    
-    fun createComment(postId: Int, comment: Comments): Comments {
-        TODO() // add function
+
+    fun getPostSize(): Int {
+        return posts.size
+    }
+
+    fun createComment(postId: Int, comment: Comments): Comments? {
+        for ((index, post) in posts.withIndex()) {
+            if (post.id == posts[index].id) {
+                posts[index].comments += comment
+                return comment
+            }
+        }
+        return null
+
+
     }
 
     fun add(post: Post): Post {
