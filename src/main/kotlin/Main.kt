@@ -26,8 +26,14 @@ fun main() {
 
     println(wall.getPostSize())
 
-    println(wall.createComment(5, comment))
+    wall.add(post)
+    val postId = 2L
+    val newComment = wall.createComment(postId, comment)
+    println(newComment)
+
 
     println(wall.getPost(0))
+    println(wall.getPost(1))
+    println(wall.getPostSize())
 
 }

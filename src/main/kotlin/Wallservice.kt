@@ -4,9 +4,9 @@ object WallService {
     private var posts = emptyArray<Post>()
     private var comments = emptyArray<Comments>()
 
-    fun createComment(postId: Int, comment: Comments): Comments? {
+    fun createComment(postId: Long, comment: Comments): Comments? {
         for ((index, post) in posts.withIndex()) {
-            if (post.id == posts[index].id) {
+            if (postId == posts[index].id) {
                 uniqueCommentId += 1
                 posts[index].comments += comment
                 posts[index].comments.last().id = uniqueCommentId
@@ -59,3 +59,5 @@ object WallService {
      */
 
 }
+
+class PostNotFoundException(message: String) : RuntimeException(message)

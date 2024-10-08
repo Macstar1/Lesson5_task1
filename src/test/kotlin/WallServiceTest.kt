@@ -17,7 +17,7 @@ class WallServiceTest {
             date = 1,
             text = "",
             isFriendsOnly = true,
-            comments = Comments(),
+            comments = emptyArray(),
             likes = Likes(0, true, true, true),
             views = Views(0),
             postType = "",
@@ -41,7 +41,7 @@ class WallServiceTest {
             date = 1,
             text = "",
             isFriendsOnly = true,
-            comments = Comments(),
+            comments = emptyArray(),
             likes = Likes(0, true, true, true),
             views = Views(0),
             postType = "",
@@ -66,7 +66,7 @@ class WallServiceTest {
             date = 1,
             text = "",
             isFriendsOnly = true,
-            comments = Comments(),
+            comments = emptyArray(),
             likes = Likes(0, true, true, true),
             views = Views(0),
             postType = "",
@@ -80,5 +80,9 @@ class WallServiceTest {
         assertEquals(true, result)
 
     }
+    @Test(expected = PostNotFoundException::class)
+    fun shouldThrow() {
 
+        // здесь код с вызовом функции, которая должна выкинуть PostNotFoundException
+    }
 }
