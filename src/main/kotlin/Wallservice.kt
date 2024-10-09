@@ -1,4 +1,4 @@
-object WallService {
+class Wallservice {
     private var uniquePostId = 0L
     private var uniqueCommentId = 0L
     private var posts = emptyArray<Post>()

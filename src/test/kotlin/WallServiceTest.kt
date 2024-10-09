@@ -1,6 +1,3 @@
-import WallService.add
-import WallService.createComment
-import WallService.update
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -10,6 +7,7 @@ class WallServiceTest {
 
     @Test
     fun add_increase_id() {
+        val service = Wallservice()
         val post = Post(
             original = null,
             id = 0L,
@@ -26,13 +24,13 @@ class WallServiceTest {
             isCanDelete = true,
             isCanEdit = true
         )
-        val result = add(post).id
-        assertEquals(3, result)
+        val result = service.add(post).id
+        assertEquals(1, result)
     }
 
     @Test
     fun update_false() {
-
+        val service = Wallservice()
         val post = Post(
             original = null,
             id = 100L,
@@ -50,13 +48,14 @@ class WallServiceTest {
             isCanEdit = true
         )
 
-        val result = update(post)
+        val result = service.update(post)
         assertEquals(false, result)
 
     }
 
     @Test
     fun update_true() {
+        val service = Wallservice()
 
         val post = Post(
             original = null,
@@ -74,16 +73,28 @@ class WallServiceTest {
             isCanDelete = true,
             isCanEdit = true
         )
-        add(post = post)
-        add(post = post)
-        val result = update(post)
+        service.add(post = post)
+        service.add(post = post)
+        val result = service.update(post)
         assertEquals(true, result)
     }
 
     @Test(expected = PostNotFoundException::class)
     fun shouldThrow() {
+        val service = Wallservice()
         val postId = 10L
         val newcomment =
-            createComment(postId, Comments())?.id ?: throw PostNotFoundException("Post with id: $postId not found.")
+            service.createComment(postId, Comments())?.id ?: throw PostNotFoundException("Post with id: $postId not found.")
+    }
+
+    @Test
+    fun commentAdd(){
+        val service = Wallservice()
+        val postId = 1L
+        val post = Post()
+        service.add(post)
+
+        val result = service.createComment(postId, Comments())
+        assertEquals(Comments(), result)
     }
 }

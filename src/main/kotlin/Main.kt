@@ -3,7 +3,7 @@ fun main() {
     val comment: Comments = Comments()
     val like: Likes = Likes()
     val post: Post = Post()
-    val wall: WallService = WallService
+    val wall: Wallservice = Wallservice()
 
     wall.add(post)
 
