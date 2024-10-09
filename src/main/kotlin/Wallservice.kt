@@ -8,20 +8,16 @@ object WallService {
         for ((index, post) in posts.withIndex()) {
             if (postId == posts[index].id) {
                 uniqueCommentId += 1
-                posts[index].comments += comment
-                posts[index].comments.last().id = uniqueCommentId
+                posts[index].comments += comment.copy(id = uniqueCommentId)
                 return comment
             }
         }
         return null
-
-
     }
 
     fun add(post: Post): Post {
         uniquePostId += 1
-        posts += post
-        posts.last().id = uniquePostId
+        posts += post.copy(id = uniquePostId)
         return posts.last()
     }
 
@@ -34,7 +30,6 @@ object WallService {
             }
         }
         return find
-
     }
 
     fun getPost(index: Int): Post {
@@ -44,20 +39,6 @@ object WallService {
     fun getPostSize(): Int {
         return posts.size
     }
-
-    /*
-
-    fun likeById(id: Long) {
-        for ((index, post) in posts.withIndex()) {
-            if (post.id == id) {
-                posts[index] = post.copy(likes = post.likes.copy(count = post.likes.count + 1))
-            }
-        }
-    }
-
-
-     */
-
 }
 
 class PostNotFoundException(message: String) : RuntimeException(message)

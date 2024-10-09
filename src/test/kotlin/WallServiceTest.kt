@@ -1,4 +1,5 @@
 import WallService.add
+import WallService.createComment
 import WallService.update
 import org.junit.Test
 
@@ -25,7 +26,6 @@ class WallServiceTest {
             isCanDelete = true,
             isCanEdit = true
         )
-
         val result = add(post).id
         assertEquals(3, result)
     }
@@ -74,15 +74,16 @@ class WallServiceTest {
             isCanDelete = true,
             isCanEdit = true
         )
-        WallService.add(post = post)
-        WallService.add(post = post)
+        add(post = post)
+        add(post = post)
         val result = update(post)
         assertEquals(true, result)
-
     }
+
     @Test(expected = PostNotFoundException::class)
     fun shouldThrow() {
-
-        // здесь код с вызовом функции, которая должна выкинуть PostNotFoundException
+        val postId = 10L
+        val newcomment =
+            createComment(postId, Comments())?.id ?: throw PostNotFoundException("Post with id: $postId not found.")
     }
 }

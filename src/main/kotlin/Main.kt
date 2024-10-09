@@ -7,8 +7,6 @@ fun main() {
 
     wall.add(post)
 
-
-
     post.attachment = arrayOf(
         AttachmentFile(
             File(1,1,"", 10, "url"),
@@ -23,17 +21,18 @@ fun main() {
         ), "audio")
     )
 
-
     println(wall.getPostSize())
 
     wall.add(post)
-    val postId = 2L
+    wall.add(post)
+    val postId = 5L
     val newComment = wall.createComment(postId, comment)
-    println(newComment)
-
+    println(newComment?.id ?: throw PostNotFoundException("Post with id: $postId not found."))
 
     println(wall.getPost(0))
     println(wall.getPost(1))
+    println(wall.getPost(2))
+
     println(wall.getPostSize())
 
 }
