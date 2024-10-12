@@ -24,19 +24,17 @@ class NoteServiceTest {
 
     @Test
     fun delete() {
-        service.add(note)
+        service.add(Notes())
         service.delete(1)
-        val result = notes[1]?.isDelete
+        val result = service.notes[1]?.isDelete
         assertEquals(true, result)
-
     }
-
-    /*
 
     @Test
     fun deleteComment() {
-    }
 
+    }
+/*
     @Test
     fun edit() {
     }

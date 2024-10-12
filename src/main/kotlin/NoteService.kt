@@ -1,8 +1,8 @@
 class NoteService {
     private var uniqueNoteId: Long = 0L
     private var uniqueCommentId: Long = 0L
-    private var notes: MutableMap<Long, Notes> = mutableMapOf()
-    private var comments: MutableMap<Long, Comments> = mutableMapOf()
+    var notes: MutableMap<Long, Notes> = mutableMapOf()
+    //var comments: MutableMap<Long, Comments> = mutableMapOf()
 
     fun add(note: Notes): Long {
         uniqueNoteId += 1
@@ -12,7 +12,7 @@ class NoteService {
 
     fun createComment(noteId: Long, comment: Comments): Long {
         uniqueCommentId += 1
-        comments[uniqueCommentId] = comment
+        notes[noteId]?.comments?.put(uniqueCommentId, comment)
         return uniqueCommentId
     }
 
@@ -21,8 +21,11 @@ class NoteService {
     }
 
     fun deleteComment(commentId: Long) {
-        comments[commentId]?.isDelete = true
-
+        for ((key, value) in notes) {
+            if (notes[key]?.comments?.containsKey(commentId) == true) {
+                notes[key]?.comments?.get(commentId)?.isDelete = true
+            }
+        }
     }
 
     fun edit(noteId: Long, text: String, title: String) {
@@ -32,9 +35,11 @@ class NoteService {
     }
 
     fun editComment(commentId: Long, text: String) {
-        val comment = comments[commentId]
-        comments[commentId] =
-            comment?.copy(text = text) ?: throw CommentNotFoundException("Comment with id: $commentId not found.")
+        for ((key, value) in notes) {
+            if (notes[key]?.comments?.containsKey(commentId) == true) {
+                notes[key]?.comments?.get(commentId)?.text = text
+            }
+        }
     }
 
     fun get(noteIds: Set<Long>): Set<Notes?> {
@@ -49,13 +54,16 @@ class NoteService {
         return notes[noteId]
     }
 
-    fun getComments(noteId: Long): Array<Comments> {
+    fun getComments(noteId: Long): MutableMap<Long, Comments> {
         return notes[noteId]?.comments ?: throw NoteNotFoundException("Note with id: $noteId not found.")
     }
 
     fun restoreComments(commentId: Long) {
-        comments[commentId]?.isDelete = false
-
+        for ((key, value) in notes) {
+            if (notes[key]?.comments?.containsKey(commentId) == true) {
+                notes[key]?.comments?.get(commentId)?.isDelete = false
+            }
+        }
     }
 
 
