@@ -38,5 +38,8 @@ fun main() {
 
     notes.add(Notes())
     println(notes.getById(1))
+    notes.createComment(1, comment)
+    notes.deleteComment(1)
+    println(notes.getById(1))
 
 }

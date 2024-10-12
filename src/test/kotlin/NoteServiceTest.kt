@@ -32,6 +32,11 @@ class NoteServiceTest {
 
     @Test
     fun deleteComment() {
+        service.createComment(1, comment)
+        service.deleteComment(1)
+        val result = service.notes[1]?.comments?.get(1)?.isDelete
+        assertEquals(true, result)
+
 
     }
 /*
