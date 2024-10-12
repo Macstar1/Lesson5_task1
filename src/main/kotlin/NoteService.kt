@@ -1,69 +1,55 @@
 class NoteService {
     private var uniqueNoteId: Long = 0L
     private var uniqueCommentId: Long = 0L
-    private var notes = mutableListOf(Notes())
-    private var comments = mutableListOf(Comments())
+    private var notes: MutableMap<Long, Notes> = mutableMapOf()
+    private var comments: MutableMap<Long, Comments> = mutableMapOf()
 
-    fun add(note: Notes): Notes {
+    fun add(note: Notes): Long {
         uniqueNoteId += 1
-        notes += note.copy(id = uniqueNoteId)
-        return notes.last()
+        notes[uniqueNoteId] = note
+        return uniqueNoteId
     }
 
-    fun createComment(noteId: Long, comment: Comments): Comments? {
-        for ((index, note) in notes.withIndex()) {
-            if (noteId == notes[index].id) {
-                uniqueCommentId += 1
-                notes[index].comments += comment.copy(id = uniqueCommentId)
-                return comment
-            }
-        }
-        return null
+    fun createComment(noteId: Long, comment: Comments): Long {
+        uniqueCommentId += 1
+        comments[uniqueCommentId] = comment
+        return uniqueCommentId
     }
 
     fun delete(noteId: Long) {
-        for ((index, note) in notes.withIndex()) {
-            if (noteId == notes[index].id) {
-                notes[index].isDelete = true
-            }
-        }
+        notes[noteId]?.isDelete = true
     }
 
     fun deleteComment(commentId: Long) {
-        for ((index, comment) in comments.withIndex()) {
-            if (commentId == comments[index].id) {
-                comments[index].isDelete = true
-            }
-        }
+        comments.remove(commentId)
     }
 
-    fun edit(noteId: Long, text: String) {
-        for ((index, note) in notes.withIndex()) {
-            if (noteId == notes[index].id) {
-                notes[index].text = text
-            }
-        }
+    fun edit(noteId: Long, text: String, title: String) {
+        val note = notes[noteId]
+        notes[noteId] =
+            note?.copy(text = text, title = title) ?: throw NoteNotFoundException("Note with id: $noteId not found.")
     }
 
     fun editComment(commentId: Long, text: String) {
-        for ((index, comment) in comments.withIndex()) {
-            if (commentId == comments[index].id) {
-                comments[index].text = text
-            }
+        val comment = comments[commentId]
+        comments[commentId] =
+            comment?.copy(text = text) ?: throw CommentNotFoundException("Comment with id: $commentId not found.")
+    }
+
+    fun get(noteIds: Set<Long>): Set<Notes?> {
+        val result = mutableSetOf<Notes?>()
+        for (i in noteIds) {
+            result.add(notes[i])
         }
+        return result
     }
 
-    fun get() {
-
-
+    fun getById(noteId: Long): Notes? {
+        return notes[noteId]
     }
 
-    fun getById() {
-
-    }
-
-    fun getComments() {
-
+    fun getComments(noteId: Long): Comments? {
+        return comments[noteId]
     }
 
     fun restoreComments() {
@@ -72,3 +58,6 @@ class NoteService {
 
 
 }
+
+class NoteNotFoundException(message: String) : RuntimeException(message)
+class CommentNotFoundException(message: String) : RuntimeException(message)
