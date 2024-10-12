@@ -4,6 +4,7 @@ fun main() {
     val like: Likes = Likes()
     val post: Post = Post()
     val wall: Wallservice = Wallservice()
+    val notes: NoteService = NoteService()
 
     wall.add(post)
 
@@ -25,7 +26,7 @@ fun main() {
 
     wall.add(post)
     wall.add(post)
-    val postId = 5L
+    val postId = 1L
     val newComment = wall.createComment(postId, comment)
     println(newComment?.id ?: throw PostNotFoundException("Post with id: $postId not found."))
 
@@ -34,5 +35,8 @@ fun main() {
     println(wall.getPost(2))
 
     println(wall.getPostSize())
+
+    notes.add(Notes())
+    println(notes.getById(1))
 
 }

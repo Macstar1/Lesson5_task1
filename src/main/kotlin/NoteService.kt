@@ -21,7 +21,8 @@ class NoteService {
     }
 
     fun deleteComment(commentId: Long) {
-        comments.remove(commentId)
+        comments[commentId]?.isDelete = true
+
     }
 
     fun edit(noteId: Long, text: String, title: String) {
@@ -48,11 +49,12 @@ class NoteService {
         return notes[noteId]
     }
 
-    fun getComments(noteId: Long): Comments? {
-        return comments[noteId]
+    fun getComments(noteId: Long): Array<Comments> {
+        return notes[noteId]?.comments ?: throw NoteNotFoundException("Note with id: $noteId not found.")
     }
 
-    fun restoreComments() {
+    fun restoreComments(commentId: Long) {
+        comments[commentId]?.isDelete = false
 
     }
 
