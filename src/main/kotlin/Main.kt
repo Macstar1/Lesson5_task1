@@ -46,5 +46,6 @@ fun main() {
     notes.edit(2,"", "")
     println(notes.getById(2))
     println(notes.notes)
+    println(notes.get(setOf(1L, 2L)))
 
 }

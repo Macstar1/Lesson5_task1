@@ -70,7 +70,7 @@ class NoteServiceTest {
         service.add(Notes())
         val noteIds = setOf(1L, 2L, 3L)
         val result = service.get(noteIds)
-        assertEquals(service, result)
+        assertEquals(noteIds, result)
     }
 /*
     @Test
