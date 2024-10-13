@@ -6,7 +6,7 @@ class NoteService {
 
     fun add(note: Notes): Long {
         uniqueNoteId += 1
-        notes[uniqueNoteId] = note
+        notes.put(uniqueNoteId, note)
         return uniqueNoteId
     }
 

@@ -36,10 +36,15 @@ fun main() {
 
     println(wall.getPostSize())
 
+
+    notes.add(Notes())
+    notes.add(Notes())
     notes.add(Notes())
     println(notes.getById(1))
     notes.createComment(1, comment)
     notes.deleteComment(1)
-    println(notes.getById(1))
+    notes.edit(2,"", "")
+    println(notes.getById(2))
+    println(notes.notes)
 
 }
