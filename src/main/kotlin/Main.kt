@@ -10,16 +10,18 @@ fun main() {
 
     post.attachment = arrayOf(
         AttachmentFile(
-            File(1,1,"", 10, "url"),
+            File(1, 1, "", 10, "url"),
             "file"
         ),
-        AttachmentAudio(Audio(
-            1L,
-            1L,
-            "Duke Dumont",
-            "Ocean Drive",
-            5
-        ), "audio")
+        AttachmentAudio(
+            Audio(
+                1L,
+                1L,
+                "Duke Dumont",
+                "Ocean Drive",
+                5
+            ), "audio"
+        )
     )
 
     println(wall.getPostSize())
@@ -42,10 +44,15 @@ fun main() {
     notes.add(Notes())
     println(notes.getById(1))
     notes.createComment(1, comment)
+    notes.createComment(1, comment)
     notes.deleteComment(1)
-    notes.edit(2,"", "")
+    notes.createComment(2, comment)
+    notes.edit(2, "", "")
     println(notes.getById(2))
     println(notes.notes)
     println(notes.get(setOf(1L, 2L)))
+    println(notes.notes.size)
+    println(notes.getComments(1L))
+
 
 }

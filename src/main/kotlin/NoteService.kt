@@ -7,12 +7,13 @@ class NoteService {
     fun add(note: Notes): Long {
         uniqueNoteId += 1
         notes.put(uniqueNoteId, note)
+        notes[uniqueNoteId]?.id = uniqueNoteId
         return uniqueNoteId
     }
 
     fun createComment(noteId: Long, comment: Comments): Long {
         uniqueCommentId += 1
-        notes[noteId]?.comments?.put(uniqueCommentId, comment)
+        notes[noteId]?.comments?.put(uniqueCommentId, comment.copy(id = uniqueCommentId))
         return uniqueCommentId
     }
 
@@ -65,8 +66,6 @@ class NoteService {
             }
         }
     }
-
-
 }
 
 class NoteNotFoundException(message: String) : RuntimeException(message)
