@@ -1,5 +1,14 @@
 fun main() {
 
+
+    var chatService: ChatService = ChatService()
+    chatService.sendMessage(1, Message("Hi"))
+    chatService.sendMessage(2, Message("Hi"))
+    chatService.sendMessage(1, Message("How are you?"))
+    chatService.printChat()
+
+
+/*
     val comment: Comments = Comments()
     val like: Likes = Likes()
     val post: Post = Post()
@@ -53,6 +62,8 @@ fun main() {
     println(notes.get(setOf(1L, 2L)))
     println(notes.notes.size)
     println(notes.getComments(1L))
+
+ */
 
 
 }
