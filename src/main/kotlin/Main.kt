@@ -2,11 +2,13 @@ fun main() {
 
 
     var chatService: ChatService = ChatService()
-    chatService.sendMessage(1, Message("Hi"))
+    chatService.sendMessage(1, Message("Hi", true))
     chatService.sendMessage(2, Message("Hi"))
     chatService.sendMessage(1, Message("How are you?"))
     chatService.printChat()
+    chatService.deleteMessage(1, 0)
     println(chatService.getChats())
+
 
 
 /*
