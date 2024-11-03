@@ -6,7 +6,9 @@ fun main() {
     chatService.sendMessage(2, Message("Hi"))
     chatService.sendMessage(1, Message("How are you?"))
     chatService.printChat()
+    println(chatService.getMessages(1,1))
     chatService.deleteMessage(1, 0)
+    println(chatService.getChats())
     println(chatService.getChats())
 
 
