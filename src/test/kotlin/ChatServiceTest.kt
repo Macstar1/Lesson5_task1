@@ -24,6 +24,7 @@ class ChatServiceTest {
         assertEquals(result, expectation)
     }
 
+
     @Test
     fun getLastMessages() {
         val expectation = listOf("How are you?", "Hi")
@@ -34,6 +35,17 @@ class ChatServiceTest {
         val result = chatService.getLastMessages()
         assertEquals(result, expectation)
 
+    }
+
+    @Test
+    fun getMessagesException() {
+
+        val expectation = NoSuchChatException::class.java
+        chatService.sendMessage(1, Message("Hi", true))
+        chatService.sendMessage(2, Message("Hi"))
+        chatService.sendMessage(1, Message("How are you?"))
+        val result = chatService.getMessages(3, 2)
+        assertEquals(result, expectation)
     }
 
     @Test
@@ -68,11 +80,11 @@ class ChatServiceTest {
 
     @Test
     fun deleteChat() {
-            chatService.sendMessage(1, Message("Hi", true))
-            chatService.sendMessage(2, Message("Hi"))
-            chatService.sendMessage(1, Message("How are you?"))
-            chatService.deleteChat(1)
-            val result = chatService.getUnreadChatsCount()
-            assertEquals(result, 1)
+        chatService.sendMessage(1, Message("Hi", true))
+        chatService.sendMessage(2, Message("Hi"))
+        chatService.sendMessage(1, Message("How are you?"))
+        chatService.deleteChat(1)
+        val result = chatService.getUnreadChatsCount()
+        assertEquals(result, 1)
     }
 }
