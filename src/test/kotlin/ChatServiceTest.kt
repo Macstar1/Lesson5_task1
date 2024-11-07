@@ -37,7 +37,7 @@ class ChatServiceTest {
 
     }
 
-    @Test
+    @Test(expected = NoSuchChatException::class)
     fun getMessagesException() {
 
         val expectation = NoSuchChatException::class.java
